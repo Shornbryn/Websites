@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibrant Kids Fashion Hub</title>
+    <title>Vibrant Kids Fashion Hub</title>
+<style type="text/css">
+/* Universal Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: aSegoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+body {
+    background-color: #0b0c10;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* RGB Color Utilities & Text Formatting */
+.rgb-text {
+    animation: rgbShift 6s infinite linear;
+}
+
+.text-red { color: #ff0055; text-shadow: 0 0 10px rgba(255, 0, 85, 0.5); }
+.text-blue { color: #00d2ff; text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
+
+@keyframes rgbShift {
+    0% { color: #ff0055; text-shadow: 0 0 10px #ff0055; }
+    33% { color: #00ff66; text-shadow: 0 0 10px #00ff66; }
+    66% { color: #00d2ff; text-shadow: 0 0 10px #00d2ff; }
+    100% { color: #ff0055; text-shadow: 0 0 10px #ff0055; }
+}
+
+/* Header & Hamburger Menu Setup */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(11, 12, 16, 0.95);
+    border-bottom: 2px solid #1f2833;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+.logo span { color: #00ff66; }
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu ul li { margin-left: 2rem; }
+
+.nav-menu ul li a {
+    color: #c5a059;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover { color: #00ff66; }
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    transition: all 0.3s linear;
+}
+
+/* Wall Decorated Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Textured graffiti brick wall background effect */
+    background: url('https://unsplash.com') no-repeat center center/cover;
+    padding: 0 1rem;
+}
+
+/* Semi-transparent dark layer for readability and RGB light accentuation */
+.wall-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(11,12,16,0.9) 85%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #66fcf1;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    color: #fff;
+    background: transparent;
+    border: 2px solid #00ff66;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+    transition: 0.3s;
+}
+.cta-btn:hover {
+    background: #00ff66;
+    color: #000;
+}
+
+/* Floating & Horizontal Scrollable Product Collections */
+.product-section {
+    padding: 5rem 5% 2rem 5%;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.scroll-container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1.5rem 0.5rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: #1f2833 transparent;
+}
+
+/* Custom Webkit scrollbar stylings */
+.scroll-container::-webkit-scrollbar { height: 8px; }
+.scroll-container::-webkit-scrollbar-thumb { background-color: #1f2833; border-radius: 10px; }
+
+/* Floating Outfit Cards Styling */
+.product-card {
+    flex: 0 0 300px;
+    background: #15161e;
+    border-radius: 12px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Giving floating effect using box shadow and baseline animation */
+    animation: floatEffect 4s ease-in-out infinite alternate;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+@keyframes floatEffect {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-8px); }
+}
+
+/* Individualized Glowing Card Frames */
+.glow-red { border: 1px solid rgba(255, 0, 85, 0.3); box-shadow: 0 5px 15px rgba(255, 0, 85, 0.15); }
+.glow-blue { border: 1px solid rgba(0, 210, 255, 0.3); box-shadow: 0 5px 15px rgba(0, 210, 255, 0.15); }
+
+.image-placeholder {
+    width: 100%;
+    height: 200px;
+    background: #20222f;
+    display: flex;
+    align-items: center;
+    justify-content: top;
+    color: #888;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.card-info {
+    padding: 1.5rem;
+}
+
+.card-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+.card-info .price { font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; color: #00ff66;}
+
+/* WhatsApp Order Buttons */
+.whatsapp-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn-red { background: #ff0055; box-shadow: 0 0 10px rgba(255, 0, 85, 0.4); }
+.btn-red:hover { background: #d60046; box-shadow: 0 0 18px rgba(255, 0, 85, 0.7); }
+
+.btn-blue { background: #00d2ff; color: #000; box-shadow: 0 0 10px rgba(0, 210, 255, 0.4); }
+.btn-blue:hover { background: #00b4db; box-shadow: 0 0 18px rgba(0, 210, 255, 0.7); }
+
+/* Footer & Embedded Interactive Map */
+.site-footer {
+    background: #07080c;
+    padding: 3rem 5% 1.5rem 5%;
+    border-top: 2px solid #1f2833;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.map-container {
+    margin-bottom: 2rem;
+}
+
+.map-container h3 {
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: #00ff66;
+}
+
+.map-container iframe {
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(31, 40, 51, 0.5);
+}
+
+.footer-info {
+    text-align: center;
+    color: #45f3ff;
+    font-size: 0.9rem;
+}
+.footer-info p:last-child {
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* Responsive Structural Breakpoints */
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 70%;
+        height: calc(100vh - 70px);
+        background: rgba(11, 12, 16, 0.98);
+        transition: right 0.4s ease;
+        border-left: 2px solid #1f2833;
+    }
+    
+    .nav-menu.active { right: 0; }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 3rem;
+    }
+    
+    .nav-menu ul li {
+        margin: 1.5rem 0;
+    }
+    
+    .hero-content h1 { font-size: 2.2rem; }
+}
+
+  
+</style>
+  
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar">
+        <div class="logo">KIDS<span>OUTFTS</span></div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#female-kids">Girls Outfits</a></li>
+                <li><a href="#male-kids">Boys Outfits</a></li>
+                <li><a href="#location">Find Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Wall Decorated Head/Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="wall-overlay"></div>
+        <div class="hero-content">
+            <h1>Expressive <span class="rgb-text">Color</span> Fashion</h1>
+            <p>Trending kids outfits for vibrant kids.</p>
+            <a href="#female-kids" class="cta-btn">Explore Collections</a>
+        </div>
+    </section>
+
+    <!-- Female Kids Outfit Section -->
+    <section id="female-kids" class="product-section">
+        <h2 class="section-title text-red">Girls  Outfits</h2>
+        <div class="scroll-container">
+            <!-- Card 1 -->
+            <div class="product-card glow-red">
+                <div class="image-placeholder">
+                </div>
+            
+                <div class="card-info">
+                    <h3>Neon Flare Dress</h3>
+                    <p class="price">UGX 20000</p>
+                    <a href="https://wa.me" class="whatsapp-btn btn-red" target="_blank">Order via WhatsApp</a>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="product-card glow-red">
+                <div class="image-placeholder">[ Cyberpunk Casual Set Image ]</div>
+                <div class="card-info">
+                    <h3>Cyber Jogger Set</h3>
+                    <p class="price">UGX 45000</p>
+                    <a href="https://wa.me" class="whatsapp-btn btn-red" target="_blank">Order via WhatsApp</a>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="product-card glow-red">
+                <div class="image-placeholder">[ Pastel Glow Skirt Outfit ]</div>
+                <div class="card-info">
+                    <h3>Glow Skirt Combo</h3>
+                    <p class="price">UGX 50000</p>
+                    <a href="https://wa.me" class="whatsapp-btn btn-red" target="_blank">Order via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Male Kids Outfit Section -->
+    <section id="male-kids" class="product-section">
+        <h2 class="section-title text-blue">Male Kids Outfits</h2>
+        <div class="scroll-container">
+            <!-- Card 1 -->
+            <div class="product-card glow-blue">
+                <div class="image-placeholder">[ RGB Electric Hoodie Image ]</div>
+                <div class="card-info">
+                    <h3>Electric Pulse Hoodie</h3>
+                    <p class="price">UGX 30000</p>
+                    <a href="https://wa.me" class="whatsapp-btn btn-blue" target="_blank">Order via WhatsApp</a>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="product-card glow-blue">
+                <div class="image-placeholder">[ Matrix Techwear Suit Image ]</div>
+                <div class="card-info">
+                    <h3>Matrix Tech Suit</h3>
+                    <p class="price">UGX 60000</p>
+                    <a href="https://wa.me" class="whatsapp-btn btn-blue" target="_blank">Order via WhatsApp</a>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="product-card glow-blue">
+                <div class="image-placeholder">[ Neon Street Vibe Shorts ]</div>
+                <div class="card-info">
+                    <h3>Neon Street Shorts</h3>
+                    <p class="price">UGX 40000</p>
+                    <a href="https://wa.me" class="whatsapp-btn btn-blue" target="_blank">Order via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Google Map Section -->
+    <footer id="location" class="site-footer">
+        <div class="footer-content">
+            <div class="map-container">
+                <h3>Our Location</h3>
+                <!-- EDITABLE MAP INTERFACE: Replace the src URL below with your client's Google Maps Embed link -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7580653904147!2d32.57199627758269!3d0.31488936402271406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbd440dd965ad%3A0xc54df186c1c3ba7e!2sFamily%20Kids%20Store%20Kampala!5e0!3m2!1sen!2sug!4v1792228103100!5m2!1sen!2sug" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                  
+id="googleMap"
+      id="googleMap">
+                    
+                  
+                </iframe>
+                    
+              
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2026 KIDS RGB Fashion Store. All Rights Reserved.</p>
+                <p>To update the location, change the <code>src</code> attribute inside the iframe code template.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+
+      document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-menu ul li a');
+
+    // Toggle menu state on hamburger click
+    hamburgerBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        toggleHamburgerAnimation();
+    });
+
+    // Close mobile side panel menu upon clicking any anchor section link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                toggleHamburgerAnimation();
+            }
+        });
+    });
+
+    // Helper animation state transitions for structural hamburger bars
+    function toggleHamburgerAnimation() {
+        const bars = hamburgerBtn.querySelectorAll('span');
+        if (navMenu.classList.contains('active')) {
+            bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+            bars[1].style.opacity = '0';
+            bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+        } else {
+            bars[0].style.transform = 'none';
+            bars[1].style.opacity = '1';
+            bars[2].style.transform = 'none';
+        }
+    }
+});
+
+    </script>
+</body>
+</html>
